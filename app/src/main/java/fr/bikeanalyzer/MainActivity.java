@@ -102,13 +102,13 @@ public class MainActivity  extends BlunoLibrary {
         series.setDrawBackground(true);
         //series.setBackgroundColor((Color.argb(100, 255, 218, 172)));
         graph.addSeries(series);
-		/*series2 = new LineGraphSeries<>(new DataPoint[]{
+		series2 = new LineGraphSeries<>(new DataPoint[]{
 				new DataPoint(0,1),
 				new DataPoint(10,2),
 				new DataPoint(30,50),
 				new DataPoint(350,50),
 				new DataPoint(600,60)
-		});*/
+		});
         series2.setDrawBackground(true);
         series2.setOntop(true);
         series2.setColor((Color.argb(255, 255, 0, 0)));
