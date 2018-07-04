@@ -40,19 +40,18 @@ import fr.bikeanalyzer.R;
 import fr.bikeanalyzer.BlunoLibrary;
 
 public class MainActivity  extends BlunoLibrary {
-    private static final int REQUEST_BLUETOOTH = 1;
-    private static final int REQUEST_BLUETOOTH_ADMIN = 1;
-    private static final int REQUEST_BLUETOOTH_PRIVIILEDGED = 1;
-    private static String[] PERMISSIONS_BLUETOOTH = {
-            Manifest.permission.BLUETOOTH,
-            Manifest.permission.BLUETOOTH_ADMIN,
-            Manifest.permission.BLUETOOTH_PRIVILEGED
-    };
+//    private static final int REQUEST_BLUETOOTH = 1;
+//    private static final int REQUEST_BLUETOOTH_ADMIN = 1;
+//    private static final int REQUEST_BLUETOOTH_PRIVIILEDGED = 1;
+//    private static String[] PERMISSIONS_BLUETOOTH = {
+//            Manifest.permission.BLUETOOTH,
+//            Manifest.permission.BLUETOOTH_ADMIN,
+//            Manifest.permission.BLUETOOTH_PRIVILEGED
+//    };
     private Button buttonScan;
     private Button buttonSerialSend;
     private EditText serialSendText;
     private TextView serialReceivedText;
-    //private SpeedView speedView;
     private ImageSpeedometer speedView;
     private GraphView graph;
     private LineGraphSeries<DataPoint> series;
@@ -69,13 +68,13 @@ public class MainActivity  extends BlunoLibrary {
 
         serialBegin(115200);													//set the Uart Baudrate on BLE chip to 115200
 
-        serialReceivedText=(TextView) findViewById(R.id.serialReveicedText);	//initial the EditText of the received data
-        serialSendText=(EditText) findViewById(R.id.serialSendText);			//initial the EditText of the sending data
-        //speedView = (SpeedView) findViewById(R.id.speedView);
+        serialReceivedText = (TextView) findViewById(R.id.serialReveicedText);	//initial the EditText of the received data
+        serialSendText = (EditText) findViewById(R.id.serialSendText);			//initial the EditText of the sending data
         speedView = (ImageSpeedometer) findViewById(R.id.imageSpeedometer);
 
         graph = (GraphView) findViewById(R.id.graph);
-        //ne marche pas
+
+
         graph.getGridLabelRenderer().setLabelFormatter(new DefaultLabelFormatter()
         {
             @Override
@@ -97,7 +96,15 @@ public class MainActivity  extends BlunoLibrary {
         graph.getViewport().setMinY(0);
         graph.getViewport().setMaxY(150);
         graph.getGridLabelRenderer().setGridStyle(GridLabelRenderer.GridStyle.HORIZONTAL);
-        series = new LineGraphSeries<>();
+        series = new LineGraphSeries<>(new DataPoint[]{
+                new DataPoint(0, 1),
+                new DataPoint(1, 5),
+                new DataPoint(2, 3),
+                new DataPoint(3, 2),
+                new DataPoint(4, 6)
+        });
+        //http://www.android-graphview.org/basics-of-graphview/
+
         series2 = new LineGraphSeries<>();
         series.setDrawBackground(true);
         //series.setBackgroundColor((Color.argb(100, 255, 218, 172)));
